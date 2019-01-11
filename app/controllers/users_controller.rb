@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    authorize User
+    @users = policy_scope(User)
   end
 
   # GET /users/1
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    authorize User
     @user = User.new
   end
 
@@ -24,6 +26,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    authorize User
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -65,10 +68,11 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      authorize @user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:account_id, :email, :password_digest, :auth_token, :password_reset_token, :password_reset_sent_at)
+      params.require(:user).permit(policy(User).permitted_attributes)
     end
 end

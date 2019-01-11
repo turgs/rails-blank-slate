@@ -23,15 +23,16 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
-
-    respond_to do |format|
-      if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
-        format.json { render :show, status: :created, location: @account }
-      else
-        format.html { render :new }
-        format.json { render json: @account.errors, status: :unprocessable_entity }
+    if @account.valid?
+      ActiveRecord::Base.transaction do
+        @account = Account.create! account_params
+        @user = @account.users.create! email:    account_params[:signup_email],
+                                      password: account_params[:signup_password]
       end
+      session[:user_id] = @user.id
+      redirect_to @account, notice: 'Account was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -63,10 +64,11 @@ class AccountsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_account
       @account = Account.find(params[:id])
+      authorize @account
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:name)
+      params.require(:account).permit(policy(Account).permitted_attributes)
     end
 end

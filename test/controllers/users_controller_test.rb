@@ -1,46 +1,58 @@
-require "test_helper"
+require 'test_helper'
 
-describe UsersController do
-  let(:user) { users :one }
+class UsersControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = users(:one_of_all_models)
+  end
 
-  it "gets index" do
+  test "should get index" do
     get users_url
-    value(response).must_be :success?
+    assert_response :success
   end
 
-  it "gets new" do
+  test "should get new" do
     get new_user_url
-    value(response).must_be :success?
+    assert_response :success
   end
 
-  it "creates user" do
-    expect {
-      post users_url, params: { user: { account_id: user.account_id, auth_token: user.auth_token, email: user.email, password_digest: user.password_digest, password_reset_sent_at: user.password_reset_sent_at, password_reset_token: user.password_reset_token } }
-    }.must_change "User.count"
-
-    must_redirect_to user_path(User.last)
+  test "should create user" do
+    assert_difference('User.count') do
+      post users_url, params: {
+        user: {
+          account_id: @user.account_id,
+          email:      'hello@example.com',
+          password:   'passwordpasswords'
+        }
+      }
+    end
+    assert_redirected_to user_url(User.last)
   end
 
-  it "shows user" do
-    get user_url(user)
-    value(response).must_be :success?
+  test "should show user" do
+    get user_url(@user)
+    assert_response :success
   end
 
-  it "gets edit" do
-    get edit_user_url(user)
-    value(response).must_be :success?
+  test "should get edit" do
+    get edit_user_url(@user)
+    assert_response :success
   end
 
-  it "updates user" do
-    patch user_url(user), params: { user: { account_id: user.account_id, auth_token: user.auth_token, email: user.email, password_digest: user.password_digest, password_reset_sent_at: user.password_reset_sent_at, password_reset_token: user.password_reset_token } }
-    must_redirect_to user_path(user)
+  test "should update user" do
+    patch user_url(@user), params: {
+      user: {
+        account_id: @user.account_id,
+        email:      'hello@example.com',
+        password:   'passwordpasswords'
+      }
+    }
+    assert_redirected_to user_url(@user)
   end
 
-  it "destroys user" do
-    expect {
-      delete user_url(user)
-    }.must_change "User.count", -1
-
-    must_redirect_to users_path
+  test "should destroy user" do
+    assert_difference('User.count', -1) do
+      delete user_url(@user)
+    end
+    assert_redirected_to users_url
   end
 end

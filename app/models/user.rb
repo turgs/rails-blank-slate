@@ -24,8 +24,9 @@ class User < ApplicationRecord
 
     password_hash = Digest::SHA1.hexdigest(password).upcase
     begin
+      require 'net/http'
       url = URI.parse "https://api.pwnedpasswords.com/range/#{password_hash[0,5]}"
-      res = Net::HTTP.get_response(url)
+      res = ::Net::HTTP.get_response(url)
     rescue StandardError => e
       Rails.logger.fatal "#{__FILE__}:#{__LINE__}: Couldn't check user's password against Have I Been Pwned. Maybe it's down.. or timing out: #{e.to_s}".bg_red
       return 'safe'

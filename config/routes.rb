@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # root to: 'appointments#index'
 
-  resources :accounts
+  resources :accounts, except: [:index]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:create]
   resources :users

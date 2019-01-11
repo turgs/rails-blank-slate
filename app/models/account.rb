@@ -1,4 +1,6 @@
 class Account < ApplicationRecord
+  has_many :users, dependent: :destroy
+
   attr_accessor :signup_email,
                 :signup_password,
                 :signup_detected_state,
