@@ -1,0 +1,25 @@
+<h3>Password Reset</h3>
+
+<p>To reset your password, enter the email for your account.<br>
+A link will be automatically emailed to you, allowing you to choose a new password.</p>
+
+<%= form_tag password_resets_path, method: :post do %>
+
+    <% if @error.present? %>
+      <p><%= @error %></p>
+    <% end %>
+
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+
+    <button type="submit">Reset Password</button>
+
+<% end %>
+
+
+
+<div style="margin:40px 0;">
+  Go back to <a href="/login">Login</a></p>
+</div>

@@ -1,0 +1,46 @@
+<h3>Login to <strong>Next Visit</strong></h3>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= form_tag sessions_path do %>
+
+  <div class="field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password %>
+    <%= password_field_tag :password, '', autocorrect: 'off', autocapitalize: 'off', spellcheck: 'off' %>
+  </div>
+
+  <%# ---------------- %>
+  <style>.whinnie {display: none}</style>
+  <div class="whinnie">
+    <label>
+      Leave this field as it is. Don't change it.
+      <%= text_field_tag :whinnie %>
+    <label>
+    <label>
+      Leave this field as it is. Don't change it.
+      <%= check_box_tag :piglet, 'piglet', true %>
+    <label>
+  </div>
+  <%# ---------------- %>
+
+  <button type="submit">Login</button>
+
+<% end %>
+
+<div style="margin:40px 0;">
+  <%= link_to new_password_reset_path do %>
+    Forgot password?
+  <% end  %>
+</div>
+
+<div style="margin:40px 0;">
+  <p>Don't have an account?<br>
+  <a href="/register">Create an account</a></p>
+</div>

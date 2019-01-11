@@ -1,0 +1,46 @@
+<h3>Start now with <strong>Next Visit</strong></h3>
+
+
+<%= form_with(model: @account, local: true) do |form| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2>Please resolve the following <%= pluralize(@account.errors.count, "error") %>:</h2>
+      <ul>
+      <% @account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, 'Business Name' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :signup_email, 'Email' %>
+    <%= form.text_field :signup_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :signup_password, 'Chooing a Password', for: 'password' %>
+    <%= form.password_field :signup_password, id: 'password' %>
+  </div>
+
+  <%= form.hidden_field :signup_detected_state %>
+  <%= form.hidden_field :signup_detected_country %>
+  <%= form.hidden_field :signup_detected_ip_address %>
+  <%= form.hidden_field :signup_detected_user_agent %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+<div style="margin:40px 0;">
+  <p>Already have an account?<br>
+  <a href="/login">Login instead</a></p>
+</div>

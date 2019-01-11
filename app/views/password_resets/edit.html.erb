@@ -1,0 +1,32 @@
+<h3>Choose Your New Password</h3>
+
+<% if flash[:notice] %>
+  <div class="alert alert-info alert-dismissable text-left"><%= flash[:notice].html_safe %></div>
+<% end %>
+
+<% if @user.errors.any? %>
+  <div class="alert alert-danger alert-dismissable mt-5">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
+
+  <div class="field">
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Choose a Password...', id: 'password', autocorrect: 'off', autocapitalize: 'off', spellcheck: 'off' %>
+  </div>
+
+  <button type="submit">Save New Password</button>
+
+<% end %>
+
+
+
+
+<div style="margin:40px 0;">
+  Go back to <a href="/login">Login</a></p>
+</div>
