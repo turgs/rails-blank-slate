@@ -17,9 +17,7 @@ module Nextvisit
     # the framework and any gems in your application.
 
     config.generators do |g|
-      g.test_framework :mini_test,
-        spec: true,
-        fixture: true
+      g.test_framework :minitest, spec: true, fixture: true
     end
   end
 end

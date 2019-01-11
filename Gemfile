@@ -31,7 +31,6 @@ group :development do
 end
 
 group :test do
-  gem 'minitest-spec-rails'
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
