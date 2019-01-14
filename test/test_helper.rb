@@ -26,3 +26,13 @@ class ActiveSupport::TestCase
     alias :context :describe
   end
 end
+
+class ActionDispatch::IntegrationTest
+  def setup
+    ActionMailer::Base.deliveries.clear
+    clear_enqueued_jobs
+  end
+
+  def teardown
+  end
+end

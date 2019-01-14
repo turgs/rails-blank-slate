@@ -10,7 +10,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    scope.where(id: record.id).exists?
+    true
   end
 
   def update?
@@ -20,6 +20,10 @@ class UserPolicy < ApplicationPolicy
     # else
     #   scope.where(id: record.id).exists? && record.id.eql?(user.id)
     # end
+  end
+
+  def destroy?
+    scope.where(id: record.id).exists? && scope.size > 1
   end
 
   def permitted_attributes

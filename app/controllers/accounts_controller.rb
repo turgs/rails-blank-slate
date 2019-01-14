@@ -8,6 +8,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+    @users = policy_scope(@account.users).ordered
   end
 
   # GET /accounts/new
@@ -30,7 +31,7 @@ class AccountsController < ApplicationController
                                       password: account_params[:signup_password]
       end
       session[:user_id] = @user.id
-      redirect_to @account, notice: 'Account was successfully created.'
+      redirect_to root_url, notice: 'Welcome.'
     else
       render :new
     end
@@ -55,7 +56,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to login_path, notice: 'Your account has been deleted.' }
       format.json { head :no_content }
     end
   end
@@ -63,7 +64,7 @@ class AccountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
-      @account = Account.find(params[:id])
+      @account = current_user.account
       authorize @account
     end
 

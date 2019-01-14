@@ -4,12 +4,20 @@
     <title>Next Visit</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <h1>Next Visit</h1>
+    <div style="display:inline-block; border-bottom:1px solid #ccc;margin:0 0 1em; padding:0 1em .5em 0;">
+      <%= link_to 'Home', root_url %>
+      &middot;
+      <%= link_to 'Account', account_path(current_user.account_id) %>
+      <%= link_to 'Logout', logout_path %>
+    </div>
+
     <%= yield %>
+
   </body>
 </html>

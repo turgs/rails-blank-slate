@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   skip_before_action :require_login
   skip_after_action :verify_authorized
 
-
   # this is the login page
   def new
     @timestamp = Time.zone.now.strftime("%s") # this is used to reject the login form if it's too stale
@@ -34,7 +33,7 @@ class SessionsController < ApplicationController
 
     # force stronger password is needed
     if submitted_params[:password].length < 8
-      user&.send_password_reset(false)
+      user.send_password_reset
       redirect_to(edit_password_reset_path(user.password_reset_token), notice: "<p><b>The password you're using is no longer strong enough.</b></p><p>Please create a new password.</p><p>It's best to choose a password you <b>cannot remember</b> &mdash; one you <b>need</b> to write down in a <br>'passwords book'.</p><p>The big security risk isn't your friends going through your purse looking for paper with your password on it, it's the hackers trying to force their way in using automated robots. </p>") and return
     end
 
@@ -44,7 +43,6 @@ class SessionsController < ApplicationController
 
   def destroy
     notice = flash[:notice] if flash[:notice].present?
-    log_logout_attempt
     reset_session
     flash[:notice] = (notice.present? ? notice : 'Logged out.')
     redirect_to login_path

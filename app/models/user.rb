@@ -40,4 +40,21 @@ class User < ApplicationRecord
     return 'pwned' if res.body.include? password_hash.last(-5)
     'safe'
   end
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    PasswordResetEmailJob.perform_later(id)
+  end
+
+  private
+
+    def generate_token(column) # for password reset
+      loop do
+        self[column] = SecureRandom.urlsafe_base64
+        break unless User.exists?(column => self[column])
+      end
+    end
+
 end

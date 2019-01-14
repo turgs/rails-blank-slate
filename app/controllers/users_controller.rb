@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     authorize User
-    @user = User.new
+    @user = current_user.account.users.new
   end
 
   # GET /users/1/edit
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     authorize User
-    @user = User.new(user_params)
+    @user = current_user.account.users.new(user_params)
 
     respond_to do |format|
       if @user.save
@@ -57,10 +57,21 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    user_is_deleting_themselves = @user.id if current_user && current_user.id.eql?(@user.id)
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html do
+        if user_is_deleting_themselves
+          reset_session
+          redirect_to logout_path, notice: "Your account was deleted."
+        else
+          redirect_to users_url, notice: 'User was successfully destroyed.'
+        end
+      end
+      format.json do
+        reset_session if user_is_deleting_themselves
+        head :no_content
+      end
     end
   end
 
