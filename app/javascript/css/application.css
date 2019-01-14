@@ -1,0 +1,162 @@
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/preflight";
+ */
+@tailwind preflight;
+
+/**
+ * This injects any component classes registered by plugins.
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/components";
+ */
+@tailwind components;
+
+/**
+ * Here you would add any of your custom component classes; stuff that you'd
+ * want loaded *before* the utilities so that the utilities could still
+ * override them.
+ *
+ * Example:
+ *
+ * .btn { ... }
+ * .form-input { ... }
+ *
+ * Or if using a preprocessor or `postcss-import`:
+ *
+ * @import "components/buttons";
+ * @import "components/forms";
+ */
+
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/utilities";
+ */
+@tailwind utilities;
+
+/**
+ * Here you would add any custom utilities you need that don't come out of the
+ * box with Tailwind.
+ *
+ * Example :
+ *
+ * .bg-pattern-graph-paper { ... }
+ * .skew-45 { ... }
+ *
+ * Or if using a preprocessor or `postcss-import`:
+ *
+ * @import "utilities/background-patterns";
+ * @import "utilities/skew-transforms";
+ */
+
+.page-wrap {
+	@apply .flex;
+  & > nav.sidebar {
+    @apply .w-32 .mt-32 .mb-4;
+    & > .sidebar-inner {
+      @apply .border-r .border-grey-light .px-4;
+      & > .spacer { @apply .h-3; }
+    }
+  }
+  & > main { @apply .pl-6 .pr-4 .mb-4 .w-full; }
+}
+
+nav.sidebar > div.sidebar-inner > div {
+  @apply .mb-2;
+}
+
+
+p {
+  @apply .mb-3;
+  &:last-child { @apply .mb-0; }
+}
+
+a {
+  @apply .text-blue;
+  &:hover {
+    @apply .text-blue-darker;
+  }
+}
+
+
+
+.btn {
+  @apply .px-4 .py-2 .rounded .no-underline;
+  &:focus { @apply .outline-none .shadow-outline; }
+}
+
+.btn-sm {
+  @apply .text-sm .py-1 .px-2 .rounded .no-underline;
+  &:focus { @apply .outline-none .shadow-outline; }
+}
+
+.btn-blue {
+  @apply .bg-blue .text-white;
+  &:hover { @apply .bg-blue-dark; }
+}
+
+
+.btn-blue-outline {
+  @apply .bg-white .text-blue .border .border-blue .no-underline;
+  &:hover { @apply .bg-blue .text-white; }
+}
+
+.btn-link {
+  @apply .inline-block .align-baseline .text-blue;
+  &:hover { @apply .text-blue-darker; }
+}
+
+
+
+.form-label {
+  @apply .block .text-grey-darker .text-sm .font-bold .mb-2;
+}
+
+.form-text {
+  @apply .shadow .appearance-none .border .rounded .w-full .py-2 .px-3 .text-grey-darker .leading-tight;
+  .field_with_errors > & { @apply .border-red-dark; }
+  &:focus { @apply .outline-none .shadow-outline; }
+}
+
+.form-actions {
+  @apply .flex .pt-2;
+}
+
+.form-actions-justify {
+  @apply .items-center .justify-between;
+}
+
+.form-field {
+  @apply .mb-4;
+}
+
+
+
+.alert {
+  @apply .border-l-4 .px-8 .py-4 .mb-6;
+}
+
+.alert-red {
+  @apply .bg-red-lightest .border-red .text-red-dark;
+}
+
+.alert-yellow {
+  @apply .bg-yellow-lighter .border-yellow-dark .text-yellow-darker;
+}
+
+
+.card {
+  @apply .bg-white .shadow-md .rounded .px-8 .pt-8 .pb-8 .mb-8;
+}

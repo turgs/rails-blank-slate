@@ -1,26 +1,31 @@
 <% provide(:title, 'Reset Password - Next Visit') %>
-<h3>Password Reset</h3>
+<h3 class="font-light mb-8 text-center">Password Reset</h3>
 
-<p>To reset your password, enter the email for your account.<br>
-A link will be automatically emailed to you, allowing you to choose a new password.</p>
 
-<%= form_tag password_resets_path, method: :post do %>
-
-    <% if @error.present? %>
-      <p><%= @error %></p>
-    <% end %>
-
-    <div class="field">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, params[:email] %>
-    </div>
-
-    <button type="submit">Reset Password</button>
-
+<% if @error.present? %>
+  <div class="alert alert-red" role="alert">
+    <p><%= raw @error %></p>
+  </div>
 <% end %>
 
+<%= form_tag password_resets_path, method: :post, class: 'card' do %>
 
+    <div class="text-grey-dark text-sm mb-6">
+      <p class="">To reset your password, enter the email for your account.</p>
+      <p class="">A link will be automatically emailed to you, allowing you to choose a new password.</p>
+    </div>
 
-<div style="margin:40px 0;">
-  Go back to <a href="/login">Login</a></p>
-</div>
+    <div class="form-field">
+      <%= label_tag :email, 'Email', class: 'form-label' %>
+      <%= text_field_tag :email, params[:email], class: 'form-text', placeholder: 'Email', tabindex: 1 %>
+    </div>
+
+    <div class="form-actions">
+      <%= button_tag 'Reset Password', type: 'submit', class: 'btn btn-blue' %>
+    </div>
+    <div class="text-grey-dark text-xs mt-6">
+      &#8592; Back to
+      <%= link_to 'Login', login_path %>
+    </div>
+
+<% end %>

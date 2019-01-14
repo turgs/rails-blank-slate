@@ -17,3 +17,13 @@
   <h4>Account Users</h4>
   <%= render 'users/list' %>
 </blockquote>
+
+<hr>
+
+<h3>Stimulus JS Example</h3>
+
+<div data-controller="hello" data-hello-name="Chris">
+  <input data-target="hello.name" type="text" data-action="paste->hello#paste">
+  <button data-action="click->hello#log">Log</button>
+              <!--   event->controller#action -->
+</div>

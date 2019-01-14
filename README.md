@@ -50,6 +50,13 @@ To test emails in development, we use Mailcatcher https://mailcatcher.me.
 **don't put mailcatcher in the gemfile. Install it directly via** `gem install mailcatcher`.
 
 
+## Running Web App (Puma), Mailcatcher, Background Jobs, etc
+
+In development, use `gem install foreman`. Do *not* add this to the Gemfile. Then run `foreman start`.
+
+This will reference the `Procfile` in the project's root.
+
+
 ## Migrations and Switch Branches
 
 Always run `rake db:migrate` when your in a branch making changes.

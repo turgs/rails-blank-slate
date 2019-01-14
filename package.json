@@ -1,5 +1,12 @@
 {
   "name": "nextvisit",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "stimulus": "^1.1.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^0.7.3",
+    "webpack-dev-server": "2.11.2"
+  }
 }

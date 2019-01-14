@@ -1,47 +1,49 @@
 <% provide(:title, 'Start Now - Next Visit') %>
-<h3>Start now with <strong>Next Visit</strong></h3>
+<h3 class="font-light mb-8 text-center">Start now with <span class="font-semibold">Next Visit</span></h3>
 
 
-<%= form_with(model: @account, local: true) do |form| %>
-  <% if @account.errors.any? %>
-    <div id="error_explanation">
-      <h2>Please resolve the following <%= pluralize(@account.errors.count, "error") %>:</h2>
-      <ul>
-      <% @account.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_with model: @account, local: true, class: 'card' do |form| %>
+
+    <% if @account.errors.any? %>
+      <div class="alert alert-red" role="alert">
+        <p class="font-semibold">Please resolve the following <%= pluralize(@account.errors.count, "error") %>:</p>
+        <ul>
+        <% @account.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-field">
+      <%= form.label :signup_email, 'Email', class: 'form-label' %>
+      <%= form.text_field :signup_email, class: 'form-text', placeholder: 'Email' %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :name, 'Business Name' %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="form-field">
+      <%= form.label :signup_password, 'Choose a Password', for: 'password', class: 'form-label' %>
+      <%= form.password_field :signup_password, id: 'password', class: 'form-text', placeholder: 'Password' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :signup_email, 'Email' %>
-    <%= form.text_field :signup_email %>
-  </div>
+    <div class="form-field">
+      <%= form.label :name, 'Your Business Name', class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-text', placeholder: 'ABC & Co.' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :signup_password, 'Chooing a Password', for: 'password' %>
-    <%= form.password_field :signup_password, id: 'password' %>
-  </div>
+    <%= form.hidden_field :signup_detected_state %>
+    <%= form.hidden_field :signup_detected_country %>
+    <%= form.hidden_field :signup_detected_ip_address %>
+    <%= form.hidden_field :signup_detected_user_agent %>
 
-  <%= form.hidden_field :signup_detected_state %>
-  <%= form.hidden_field :signup_detected_country %>
-  <%= form.hidden_field :signup_detected_ip_address %>
-  <%= form.hidden_field :signup_detected_user_agent %>
+    <div class="form-actions">
+      <%= form.submit 'Start Now', class: 'btn btn-blue' %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
 
 
 
-<div style="margin:40px 0;">
-  <p>Already have an account?<br>
-  <a href="/login">Login instead</a></p>
+<div class="text-center mt-8 mb-8">
+  <p class="text-black text-sm mb-2">Already have an account?</p>
+  <div><a href="/login" class="btn-sm btn-blue-outline">Login instead</a></div>
 </div>

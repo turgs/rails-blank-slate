@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
 
     # password incorrect
     unless user.authenticate(submitted_params[:password])
-      redirect_to(login_path, notice: "Incorrect Password.<br>Try again, or you can also #{view_context.link_to('Reset Your Password', new_password_reset_path)}.", flash: { html_safe: true }) and return
+      redirect_to(login_path, notice: "<span class=\"font-semibold mb-2\">Incorrect Password.</span></p><p>Try again, or you can also #{view_context.link_to('Reset Your Password', new_password_reset_path)}.", flash: { html_safe: true }) and return
     end
 
     # set login cookie

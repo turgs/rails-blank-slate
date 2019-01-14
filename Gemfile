@@ -19,6 +19,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pundit', '~> 2.0'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'daemons', '~> 1.3.1'
+gem 'webpacker', '~> 3.5'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
