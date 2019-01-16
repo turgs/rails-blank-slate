@@ -1,80 +1,21 @@
-/**
- * This injects Tailwind's base styles, which is a combination of
- * Normalize.css and some additional base styles.
- *
- * You can see the styles here:
- * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/preflight";
- */
+
+
 @tailwind preflight;
-
-/**
- * This injects any component classes registered by plugins.
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/components";
- */
 @tailwind components;
-
-/**
- * Here you would add any of your custom component classes; stuff that you'd
- * want loaded *before* the utilities so that the utilities could still
- * override them.
- *
- * Example:
- *
- * .btn { ... }
- * .form-input { ... }
- *
- * Or if using a preprocessor or `postcss-import`:
- *
- * @import "components/buttons";
- * @import "components/forms";
- */
-
-/**
- * This injects all of Tailwind's utility classes, generated based on your
- * config file.
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/utilities";
- */
 @tailwind utilities;
 
-/**
- * Here you would add any custom utilities you need that don't come out of the
- * box with Tailwind.
- *
- * Example :
- *
- * .bg-pattern-graph-paper { ... }
- * .skew-45 { ... }
- *
- * Or if using a preprocessor or `postcss-import`:
- *
- * @import "utilities/background-patterns";
- * @import "utilities/skew-transforms";
- */
 
-.page-wrap {
-	@apply .flex;
-  & > nav.sidebar {
-    @apply .w-32 .mt-32 .mb-4;
-    & > .sidebar-inner {
-      @apply .border-r .border-grey-light .px-4;
-      & > .spacer { @apply .h-3; }
-    }
-  }
-  & > main { @apply .pl-6 .pr-4 .mb-4 .w-full; }
+html { @apply .font-sans }
+
+body > .masthead {
+  @apply .bg-blue-darker;
+}
+body > .title {
+  @apply .bg-white;
 }
 
-nav.sidebar > div.sidebar-inner > div {
-  @apply .mb-2;
+.center-pad {
+  @apply .mx-auto .p-4;
 }
 
 
@@ -87,6 +28,14 @@ a {
   @apply .text-blue;
   &:hover {
     @apply .text-blue-darker;
+  }
+}
+
+.masthead { @apply .text-white }
+.masthead a {
+  @apply .text-white .no-underline .py-1 .px-2 .rounded;
+  &:hover {
+    @apply .bg-blue-darkest;
   }
 }
 

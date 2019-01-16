@@ -3,9 +3,11 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
-    "stimulus": "^1.1.1"
+    "stimulus": "^1.1.1",
+    "typeface-open-sans": "^0.0.54"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-pro": "^5.6.3",
     "tailwindcss": "^0.7.3",
     "webpack-dev-server": "2.11.2"
   }

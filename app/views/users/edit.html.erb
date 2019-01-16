@@ -1,7 +1,4 @@
-<% provide(:title, 'Editing User - Next Visit') %>
+<% provide :title, 'Editing User') %>
 <h1>Editing User</h1>
 
 <%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', account_path(current_user.account_id) %>

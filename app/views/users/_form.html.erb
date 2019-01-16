@@ -1,8 +1,7 @@
-<%= form_with(model: user, local: true) do |form| %>
+<%= form_with(model: user, local: true, class: 'card') do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
       <% user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,17 +10,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="form-field">
+    <%= form.label :email, 'Email', class: 'form-label' %>
+    <%= form.text_field :email, class: 'form-text' %>
   </div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password %>
+  <div class="form-field">
+    <%= form.label :password, 'Password', class: 'form-label' %>
+    <%= form.text_field :password, class: 'form-text' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit nil, class: 'btn btn-blue mr-6' %>
+    <%= link_to 'Discard', account_path(current_user.account_id), class: 'btn-link' %>
   </div>
 <% end %>

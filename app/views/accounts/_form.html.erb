@@ -1,8 +1,7 @@
-<%= form_with(model: account, local: true) do |form| %>
+<%= form_with(model: account, local: true, class: 'card') do |form| %>
   <% if account.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
-
       <ul>
       <% account.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,12 +10,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-field">
+    <%= form.label :name, 'Name', class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-text' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit 'Update Account', class: 'btn btn-blue mr-6' %>
+    <%= link_to 'Discard', account_path(current_user.account_id), class: 'btn-link' %>
   </div>
 <% end %>

@@ -1,6 +1,4 @@
-<% provide(:title, 'New User - Next Visit') %>
+<% provide :title, 'New User' %>
 <h1>New User</h1>
 
 <%= render 'form', user: @user %>
-
-<%= link_to 'Back', account_path(current_user.account_id) %>

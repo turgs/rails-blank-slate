@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield :title %></title>
+    <title><%= yield :title %> - Next Visit</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,19 +10,47 @@
     <%= javascript_pack_tag    'application',               'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="bg-grey-lighter p-2">
+  <body class="bg-grey-lighter">
 
-    <div class="page-wrap">
-      <nav class="sidebar">
-        <div class="sidebar-inner">
-          <div><%= link_to 'Home', root_url %></div>
-          <div class="spacer"></div>
-          <div><%= link_to 'Account', account_path(current_user.account_id) %></div>
-          <div><%= link_to 'Logout', logout_path %></div>
+    <div class="masthead">
+      <div class="container center-pad">
+        <div class="flex">
+          <div class="w-1/2 tracking-tight">
+            BAAM
+          </div>
+          <div class="w-1/2 text-right">
+            <%= link_to account_path(current_user.account_id) do %>
+              <i class="fal fa-user" title="Account"></i>
+            <% end %>
+            <%= link_to 'Logout', logout_path %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="title">
+      <div class="container center-pad">
+        <%= yield :title %>
+      </div>
+    </div>
+    <div class="content">
+      <nav>
+        <div class="container center-pad">
+          <%= link_to 'Home', root_url %>
         </div>
       </nav>
       <main>
-        <%= yield %>
+        <div class="container center-pad">
+
+          <% if flash[:notice] || notice.present? %>
+            <div class="alert alert-yellow" role="alert">
+              <%= raw flash[:notice] || notice %>
+            </div>
+          <% end %>
+
+          <%= yield %>
+
+        </div>
       </main>
     </div>
 

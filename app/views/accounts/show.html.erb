@@ -1,22 +1,23 @@
-<% provide(:title, 'Account - Next Visit') %>
-<p id="notice"><%= notice %></p>
+<% provide :title, 'Account' %>
 
-<h3><%= @account.name %></h3>
-
+<h1 class="mb-6">Account</h1>
 <div>
-  <% if policy(@account).update? %>
-    <%= link_to 'Edit', edit_account_path(@account) %>
-  <% end %>
-  <% if policy(@account).destroy? %>
-    &middot; <%= link_to('Delete', @account, method: :delete, data: { confirm: 'This will immediately delete ALL your data and close your account. Are you sure?' }) %>
-  <% end %>
+  <%= @account.name %>
+  <span class="pl-3">
+    <% if policy(@account).update? %>
+      <%= link_to 'Edit', edit_account_path(@account) %>
+    <% end %>
+    <% if policy(@account).destroy? %>
+      &middot; <%= link_to('Close Account', @account, method: :delete, data: { confirm: 'This will immediately delete ALL your data and close your account. Are you sure?' }) %>
+    <% end %>
+  </span>
 </div>
 
 
-<blockquote style="margin-top:50px">
-  <h4>Account Users</h4>
+<div class="mt-6">
+  <h4>Users</h4>
   <%= render 'users/list' %>
-</blockquote>
+</div>
 
 <hr>
 

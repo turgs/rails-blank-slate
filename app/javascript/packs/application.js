@@ -16,3 +16,10 @@ application.load(definitionsFromContext(context))
  * TAILWIND
  */
 import '../css/application.css';
+
+
+/*
+ * FONT AWESOME
+ */
+
+import fontawesome from '@fortawesome/fontawesome-pro/css/all'
