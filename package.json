@@ -1,5 +1,5 @@
 {
-  "name": "nextvisit",
+  "name": "newapp",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
