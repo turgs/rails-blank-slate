@@ -11,23 +11,23 @@ default: &default
 
 development:
   <<: *default
-  database: nextvisit_dev
+  database: newapp_dev
 
 test:
   <<: *default
-  database: nextvisit_test
+  database: newapp_test
 
 staging:
   <<: *default
-  database: nextvisit_staging
+  database: newapp_staging
   sslmode: require
 
 production_clone:
   <<: *default
-  database: nextvisit_prod
+  database: newapp_prod
   sslmode: require
 
 production:
   <<: *default
-  database: nextvisit_prod
+  database: newapp_prod
   sslmode: require
