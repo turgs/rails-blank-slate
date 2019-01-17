@@ -1,27 +1,18 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Rails app template
 
-Things you may want to cover:
+* Rail 5.2
+* Postgres
+* Active Job using Delayed Job
+* Active Mailer using MailCatcher in Dev / SMTP in Prod
+* Webpacker (Asset Pipeline still needs dissabling though)
+* Stimulus JS
+* Tailwind CSS
+* Font Awesome 5 Pro
+* Minitest
+* Pundit.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+App already contains User, Account models with ability to `/register` `/login` `/logout`.
 
 
 
